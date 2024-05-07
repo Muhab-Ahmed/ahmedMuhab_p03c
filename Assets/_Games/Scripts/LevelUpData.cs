@@ -9,6 +9,8 @@ using System.Runtime.CompilerServices;
 public class LevelUpData : MonoBehaviour
 {
 
+
+    [Header("Level Up/Exp Interface")]
     //we'll need access to the player's current level
     [SerializeField]
     private int _currentLevel;
@@ -21,9 +23,10 @@ public class LevelUpData : MonoBehaviour
     [SerializeField]
     private float _maxExp;
 
-    [Header("Level Up/Exp Interface")]
+
     //We'll need acess to the the player's level text
     [SerializeField] TextMeshProUGUI levelText;
+
 
     //W'll need access to the player's exp text bar
     [SerializeField] TextMeshProUGUI experienceText;
@@ -34,14 +37,26 @@ public class LevelUpData : MonoBehaviour
     //We'll need to know by how much to increment for exp
     [SerializeField] int expIncrement;
 
+
+    [Header("Stats Interface")]
+
     //We'll need to know the base values for each stats
     [SerializeField]
-    private int _hp, _attack, _defense, _speed, _magic;
+    private int _hp;
+    [SerializeField]
+    private int _attack;
+    [SerializeField]
+    private int _defense;
+    [SerializeField]
+    private int _speed;
+    [SerializeField]
+    private int _magic;
 
     //We'll need access to the text to change the values of the stats
     [SerializeField]
     private TextMeshProUGUI _hpText, _attackText,
         _defenseText, _speedText, _magicText;
+
 
     //We'll need to know by how much each stats will increase
     //per level up
