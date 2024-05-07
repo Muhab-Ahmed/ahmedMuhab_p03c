@@ -21,7 +21,7 @@ public class LevelUpData : MonoBehaviour
     [SerializeField]
     private float _maxExp;
 
-    [Header("Interface")]
+    [Header("Level Up/Exp Interface")]
     //We'll need acess to the the player's level text
     [SerializeField] TextMeshProUGUI levelText;
 
@@ -34,6 +34,20 @@ public class LevelUpData : MonoBehaviour
     //We'll need to know by how much to increment for exp
     [SerializeField] int expIncrement;
 
+    //We'll need to know the base values for each stats
+    [SerializeField]
+    private int _hp, _attack, _defense, _speed, _magic;
+
+    //We'll need access to the text to change the values of the stats
+    [SerializeField]
+    private TextMeshProUGUI _hpText, _attackText,
+        _defenseText, _speedText, _magicText;
+
+    //We'll need to know by how much each stats will increase
+    //per level up
+    [SerializeField]
+    private int _hpUpgrade, _attackUpgrade,
+        _defenseUpgrade, _speedUpgrade, _magicUpgrade;
     
 
     private void Start()
@@ -90,6 +104,9 @@ public class LevelUpData : MonoBehaviour
 
         //call function to update max expGoal
         UpdateMaxExp();
+
+        //call function to update stats
+        UpdateStats();
     }
 
     public void UpdateMaxExp()
@@ -101,14 +118,31 @@ public class LevelUpData : MonoBehaviour
         UpdateInterface();
     }
 
+    public void UpdateStats()
+    {
+        _hp = _hp + _hpUpgrade;
+        _attack = _attack + _attackUpgrade;
+        _defense = _defense + _defenseUpgrade;
+        _speed = _speed + _speedUpgrade;
+        _magic = _magic + _magicUpgrade;
+
+        //call function to update user interface
+        UpdateInterface();
+    }
+
     void UpdateInterface()
     {
-
+        //update display of player's current level and experience
         levelText.text = _currentLevel.ToString();
         experienceText.text = _currentExp + " exp/ " + _maxExp + " exp";
-
-        float expFillAmount = _currentExp/_maxExp;
-        Debug.Log(_currentExp / _maxExp);
         experienceFill.fillAmount = _currentExp/_maxExp;
+
+        //update display of player's stats
+        _hpText.text = _hp.ToString();
+        _attackText.text = _attack.ToString();
+        _defenseText.text = _defense.ToString();
+        _speedText.text = _speed.ToString();
+        _magicText.text = _magic.ToString();
+
     }
 }
